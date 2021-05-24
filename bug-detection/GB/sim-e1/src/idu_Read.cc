@@ -1,0 +1,84 @@
+#include <GBHigh.h>
+bool GBHigh::decode_GBHigh_Read() {
+uint1_t local_var_1 = 1;
+bool local_var_2 = (GBHigh_arg_0_TVALID == local_var_1);
+uint1_t local_var_4 = 1;
+bool local_var_5 = (GBHigh_arg_0_TREADY == local_var_4);
+bool local_var_6 = (local_var_2 & local_var_5);
+uint1_t local_var_8 = 0;
+bool local_var_9 = (GBHigh_arg_1_TVALID == local_var_8);
+bool local_var_10 = (local_var_6 & local_var_9);
+auto& univ_var_109 = local_var_10;
+return univ_var_109;
+}
+void GBHigh::update_GBHigh_Read() {
+auto GBHigh_arg_0_TDATA_nxt_holder = GBHigh_arg_0_TDATA;
+uint4_t local_var_2 = 0;
+bool local_var_3 = (GBHigh_gbit == local_var_2);
+uint4_t local_var_4 = 7;
+bool local_var_5 = (GBHigh_gbit == local_var_4);
+bool local_var_6 = (local_var_3 | local_var_5);
+bool local_var_7 = !local_var_6;
+auto local_var_7_nxt_holder = local_var_7;
+auto GBHigh_arg_1_TREADY_nxt_holder = GBHigh_arg_1_TREADY;
+auto GBHigh_cur_pic_nxt_holder = GBHigh_cur_pic;
+uint9_t local_var_11 = 488;
+bool local_var_12 = (GBHigh_ram_x == local_var_11);
+uint10_t local_var_14 = 648;
+bool local_var_15 = (GBHigh_ram_y == local_var_14);
+bool local_var_16 = (local_var_12 & local_var_15);
+uint4_t local_var_17 = 1;
+uint4_t local_var_18 = (GBHigh_gbit + local_var_17);
+auto local_var_19 = (local_var_16) ? local_var_18 : GBHigh_gbit;
+auto local_var_19_nxt_holder = local_var_19;
+auto GBHigh_ram_w_nxt_holder = GBHigh_ram_w;
+auto GBHigh_ram_x_nxt_holder = GBHigh_ram_x;
+auto GBHigh_ram_y_nxt_holder = GBHigh_ram_y;
+auto GBHigh_stencil0_nxt_holder = GBHigh_stencil0;
+auto GBHigh_stencil1_nxt_holder = GBHigh_stencil1;
+auto GBHigh_stencil2_nxt_holder = GBHigh_stencil2;
+auto GBHigh_stencil3_nxt_holder = GBHigh_stencil3;
+auto GBHigh_stencil4_nxt_holder = GBHigh_stencil4;
+auto GBHigh_stencil5_nxt_holder = GBHigh_stencil5;
+auto GBHigh_stencil6_nxt_holder = GBHigh_stencil6;
+auto GBHigh_stencil7_nxt_holder = GBHigh_stencil7;
+auto GBHigh_stencil8_nxt_holder = GBHigh_stencil8;
+GBHigh_arg_0_TDATA = GBHigh_arg_0_TDATA_nxt_holder;
+GBHigh_arg_0_TVALID = local_var_7_nxt_holder;
+GBHigh_arg_1_TREADY = GBHigh_arg_1_TREADY_nxt_holder;
+GBHigh_cur_pic = GBHigh_cur_pic_nxt_holder;
+GBHigh_gbit = local_var_19_nxt_holder;
+GBHigh_ram_w = GBHigh_ram_w_nxt_holder;
+GBHigh_ram_x = GBHigh_ram_x_nxt_holder;
+GBHigh_ram_y = GBHigh_ram_y_nxt_holder;
+GBHigh_stencil0 = GBHigh_stencil0_nxt_holder;
+GBHigh_stencil1 = GBHigh_stencil1_nxt_holder;
+GBHigh_stencil2 = GBHigh_stencil2_nxt_holder;
+GBHigh_stencil3 = GBHigh_stencil3_nxt_holder;
+GBHigh_stencil4 = GBHigh_stencil4_nxt_holder;
+GBHigh_stencil5 = GBHigh_stencil5_nxt_holder;
+GBHigh_stencil6 = GBHigh_stencil6_nxt_holder;
+GBHigh_stencil7 = GBHigh_stencil7_nxt_holder;
+GBHigh_stencil8 = GBHigh_stencil8_nxt_holder;
+#ifdef ILATOR_VERBOSE
+instr_update_log << "No." << std::dec << GetInstrCntr() << '\t' << "Read state updates:" << std::endl;
+instr_update_log << "    GBHigh_arg_0_TDATA => " << std::hex << "0x" << GBHigh_arg_0_TDATA << std::endl; 
+instr_update_log << "    GBHigh_arg_0_TVALID => " << std::hex << "0x" << GBHigh_arg_0_TVALID << std::endl; 
+instr_update_log << "    GBHigh_arg_1_TREADY => " << std::hex << "0x" << GBHigh_arg_1_TREADY << std::endl; 
+instr_update_log << "    GBHigh_cur_pic => " << std::hex << "0x" << GBHigh_cur_pic << std::endl; 
+instr_update_log << "    GBHigh_gbit => " << std::hex << "0x" << GBHigh_gbit << std::endl; 
+instr_update_log << "    GBHigh_ram_w => " << std::hex << "0x" << GBHigh_ram_w << std::endl; 
+instr_update_log << "    GBHigh_ram_x => " << std::hex << "0x" << GBHigh_ram_x << std::endl; 
+instr_update_log << "    GBHigh_ram_y => " << std::hex << "0x" << GBHigh_ram_y << std::endl; 
+instr_update_log << "    GBHigh_stencil0 => " << std::hex << "0x" << GBHigh_stencil0 << std::endl; 
+instr_update_log << "    GBHigh_stencil1 => " << std::hex << "0x" << GBHigh_stencil1 << std::endl; 
+instr_update_log << "    GBHigh_stencil2 => " << std::hex << "0x" << GBHigh_stencil2 << std::endl; 
+instr_update_log << "    GBHigh_stencil3 => " << std::hex << "0x" << GBHigh_stencil3 << std::endl; 
+instr_update_log << "    GBHigh_stencil4 => " << std::hex << "0x" << GBHigh_stencil4 << std::endl; 
+instr_update_log << "    GBHigh_stencil5 => " << std::hex << "0x" << GBHigh_stencil5 << std::endl; 
+instr_update_log << "    GBHigh_stencil6 => " << std::hex << "0x" << GBHigh_stencil6 << std::endl; 
+instr_update_log << "    GBHigh_stencil7 => " << std::hex << "0x" << GBHigh_stencil7 << std::endl; 
+instr_update_log << "    GBHigh_stencil8 => " << std::hex << "0x" << GBHigh_stencil8 << std::endl; 
+instr_update_log << std::endl;
+#endif
+}
