@@ -44,7 +44,7 @@ jobs:
           project:
             name: "PrincetonUniversity/ILAng"
             description: "A modeling and verification platform for SoCs"
-          notification_email: ilangservice@princeton.edu
+          notification_email: yuexthu@gmail.com
           build_command_prepend: "cd $ILANG_BUILD_DIR && mkdir -p build && cd build && cmake .. -DILANG_BUILD_TEST=OFF -DCMAKE_PREFIX_PATH=$ILANG_BUILD_DIR/local -DILANG_COVERITY=ON"
           build_command: "make"
           branch_pattern: coverity_scan
