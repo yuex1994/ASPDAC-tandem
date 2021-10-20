@@ -1,9 +1,0 @@
-[submodule "extern/vlog-parser"]
-	path = ILAng/extern/vlog-parser
-	url = https://github.com/Bo-Yuan-Huang/verilog-parser.git
-[submodule "extern/tmpl-synth"]
-	path = ILAng/extern/tmpl-synth
-	url = https://github.com/PrincetonUniversity/ILA-Synthesis-Python.git
-[submodule "extern/smt-switch"]
-	path = ILAng/extern/smt-switch
-	url = https://github.com/makaimann/smt-switch.git
