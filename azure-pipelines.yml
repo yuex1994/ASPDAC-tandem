@@ -1,0 +1,100 @@
+# File: azure-pipelines.yml
+
+trigger:
+- master
+
+pr:
+- master
+
+jobs:
+- job: macOS_Catalina_Debug
+  pool:
+    vmImage: 'macOS-10.15'
+  steps:
+  - script: |
+      brew update
+      brew install bison
+      brew install z3
+    displayName: 'package'
+  - script: |
+      cmake --version
+      z3 --version
+    displayName: 'printout'
+  - script: |
+      export PATH="/usr/local/opt/bison/bin:$PATH"
+      export LDFLAGS="-L/usr/local/opt/bison/lib"
+      cd ILAng
+      mkdir -p build
+      cd build
+      cmake .. -DCMAKE_BUILD_TYPE=Debug
+      cmake --build .
+      cmake --build . --target install
+      cmake --build . --target test
+    displayName: 'build'
+
+- job: macOS_Catalina_Release
+  pool:
+    vmImage: 'macOS-10.15'
+  steps:
+  - script: |
+      brew update
+      brew install bison
+      brew install z3
+    displayName: 'package'
+  - script: |
+      cmake --version
+      z3 --version
+    displayName: 'printout'
+  - script: |
+      export PATH="/usr/local/opt/bison/bin:$PATH"
+      export LDFLAGS="-L/usr/local/opt/bison/lib"
+      cd ILAng
+      mkdir -p build
+      cd build
+      cmake .. -DCMAKE_BUILD_TYPE=Release
+      cmake --build .
+      cmake --build . --target install 
+      ./test/unit_tests
+    displayName: 'build'
+
+- job: Ubuntu_1604_LTS
+  pool:
+    vmImage: 'ubuntu-16.04'
+  steps:
+  - script: |
+      sudo apt-get update
+      sudo apt-get install bison
+      sudo apt-get install flex
+      sudo apt-get install z3
+      sudo apt-get install libz3-dev
+    displayName: 'package'
+  - script: |
+      cd ILAng
+      mkdir -p build 
+      cd build
+      cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=g++-7
+      cmake --build .
+      sudo cmake --build . --target install 
+      cmake --build . --target test
+    displayName: 'build'
+
+- job: Ubuntu_1804_LTS
+  pool:
+    vmImage: 'ubuntu-18.04'
+  steps:
+  - script: |
+      sudo apt-get update
+      sudo apt-get install bison
+      sudo apt-get install flex
+      sudo apt-get install z3
+      sudo apt-get install libz3-dev
+    displayName: 'package'
+  - script: |
+      cd ILAng
+      mkdir -p build
+      cd build
+      cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=g++-8
+      cmake --build .
+      sudo cmake --build . --target install 
+      cmake --build . --target test
+    displayName: 'build'
