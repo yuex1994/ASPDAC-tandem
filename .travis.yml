@@ -29,12 +29,12 @@ jobs:
         - gem install coveralls-lcov
         - eval "${MATRIX_EVAL}"
       before_script:
-        - mkdir -p $ILAng_BUILD_DIR/build 
-        - source $ILAng_BUILD_DIR/scripts/travis/clean-coverage.sh $ILAng_BUILD_DIR/build
+        - mkdir -p $ILANG_BUILD_DIR/build 
+        - source $ILANG_BUILD_DIR/scripts/travis/clean-coverage.sh $ILANG_BUILD_DIR/build
       script:
-        - source $ILAng_BUILD_DIR/scripts/travis/build.sh $ILAng_BUILD_DIR
+        - source $ILANG_BUILD_DIR/scripts/travis/build.sh $ILANG_BUILD_DIR
       after_success:
-        - source $ILAng_BUILD_DIR/scripts/travis/submit-coverage.sh $ILAng_BUILD_DIR/build
+        - source $ILANG_BUILD_DIR/scripts/travis/submit-coverage.sh $ILANG_BUILD_DIR/build
 
     - name: "coverity"
       os: linux
@@ -45,7 +45,7 @@ jobs:
             name: "PrincetonUniversity/ILAng"
             description: "A modeling and verification platform for SoCs"
           notification_email: ilangservice@princeton.edu
-          build_command_prepend: "cd $ILAng_BUILD_DIR && mkdir -p build && cd build && cmake .. -DILANG_BUILD_TEST=OFF -DCMAKE_PREFIX_PATH=$ILAng_BUILD_DIR/local -DILANG_COVERITY=ON"
+          build_command_prepend: "cd $ILANG_BUILD_DIR && mkdir -p build && cd build && cmake .. -DILANG_BUILD_TEST=OFF -DCMAKE_PREFIX_PATH=$ILANG_BUILD_DIR/local -DILANG_COVERITY=ON"
           build_command: "make"
           branch_pattern: coverity_scan
         apt:
@@ -62,9 +62,9 @@ jobs:
         - echo -n | openssl s_client -connect https://scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
         - eval "${MATRIX_EVAL}"
       before_script:
-        - source $ILAng_BUILD_DIR/scripts/travis/install-externs.sh $ILAng_BUILD_DIR
+        - source $ILANG_BUILD_DIR/scripts/travis/install-externs.sh $ILANG_BUILD_DIR
       script:
-        - source $ILAng_BUILD_DIR/scripts/travis/build-static.sh $ILAng_BUILD_DIR
+        - source $ILANG_BUILD_DIR/scripts/travis/build-static.sh $ILANG_BUILD_DIR
 
 addons:
   apt:
