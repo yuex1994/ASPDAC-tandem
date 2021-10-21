@@ -78,15 +78,15 @@ set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 ## git submodules
 ##
 
-##  if(${ILANG_FETCH_DEPS})
+if(${ILANG_FETCH_DEPS})
 
-##   find_package(Git REQUIRED)
+  find_package(Git REQUIRED)
 
 ##   if(NOT EXISTS "${PROJECT_SOURCE_DIR}/.git")
 ##     message(FATAL_ERROR "Submodule info not found.")
 ##   endif()
 
-## endif()
+endif()
 
 ##
 ## Third-party packages

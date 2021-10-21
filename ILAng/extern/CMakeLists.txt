@@ -103,6 +103,7 @@ endif() # SMTPARSER_FOUND
 find_package(verilogparser 1.1.0 QUIET)
 
 # embed to build tree if not installed
+message(STATUS "yuexdbg ${GIT_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}")
 if(NOT VERILOGPARSER_FOUND)
 
   # fetch from git
