@@ -27,6 +27,8 @@ jobs:
       dist: xenial
       before_install:
         - gem install coveralls-lcov
+        - sudo apt-get install libboost-all-dev
+        - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 60 --slave /usr/bin/g++ g++ /usr/bin/g++-7
         - eval "${MATRIX_EVAL}"
       before_script:
         - mkdir -p $ILANG_BUILD_DIR/build 
@@ -60,6 +62,8 @@ jobs:
             - g++-7
       before_install:
         - echo -n | openssl s_client -connect https://scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
+        - sudo apt-get install libboost-all-dev
+        - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 60 --slave /usr/bin/g++ g++ /usr/bin/g++-7 
         - eval "${MATRIX_EVAL}"
       before_script:
         - source $ILANG_BUILD_DIR/scripts/travis/install-externs.sh $ILANG_BUILD_DIR
