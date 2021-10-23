@@ -584,7 +584,7 @@ bool Ilator::GenerateExecuteKernel(const std::string& dir) {
         fmt::arg("valid_func_name", GetValidFuncName(instr->host())),
         fmt::arg("decode_func_name", GetDecodeFuncName(instr)),
         fmt::arg("update_func_name", GetUpdateFuncName(instr)),
-        fmt::arg("pc_update", (t_->aux_pc_ && tandem_check_en_ && !child) ? pc_update :""),
+        fmt::arg("pc_update", (tandem_check_en_ && !child) ? ((t_->aux_pc_) ? pc_update : "") :""),
         fmt::arg("child_counter", (child ? "schedule_counter++;\n" : "")),
         fmt::arg("instr_name", instr->name().str())
     );

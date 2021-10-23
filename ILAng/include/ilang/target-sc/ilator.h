@@ -89,7 +89,7 @@ private:
   /// Generate C++ Simulator
   static bool cxx_en_;
   
-  TandemGenerator* t_;
+  TandemGenerator* t_ = nullptr;
   bool tandem_check_en_;
   bool tandem_convert_en_;
 
