@@ -1,0 +1,15 @@
+[GENERAL]
+model_files:wrapper.v[wrapper],rst.ets
+assume_if_true: True
+abstract_clock: True
+[DEFAULT]
+bmc_length: 132
+precondition: reset_done = 1_1
+
+[invariant_assert]
+description:"invariant_assert"
+properties:(invariant_assert__p0__ = 1_1)
+prove: True
+verification: safety
+strategy: AUTO
+expected: True

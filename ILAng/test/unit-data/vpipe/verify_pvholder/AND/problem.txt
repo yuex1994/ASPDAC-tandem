@@ -1,0 +1,16 @@
+[GENERAL]
+model_files:wrapper.v[wrapper],rst.ets
+assume_if_true: True
+abstract_clock: True
+[DEFAULT]
+bmc_length: 132
+precondition: reset_done = 1_1
+
+[variable_map_assert]
+description:"variable_map_assert"
+properties:(variable_map_assert__p15__ = 1_1) & (variable_map_assert__p18__ = 1_1) & (variable_map_assert__p21__ = 1_1) & (variable_map_assert__p24__ = 1_1)
+assumptions:(noreset__m0__ = 1_1) & (variable_map_assume___m3__ = 1_1) & (variable_map_assume___m6__ = 1_1) & (variable_map_assume___m9__ = 1_1) & (variable_map_assume___m12__ = 1_1) & (invariant_assume__m25__ = 1_1) & (invariant_assume__m26__ = 1_1) & (invariant_assume__m27__ = 1_1) & (invariant_assume__m28__ = 1_1) & (invariant_assume__m29__ = 1_1) & (invariant_assume__m30__ = 1_1) & (invariant_assume__m31__ = 1_1) & (invariant_assume__m32__ = 1_1) & (invariant_assume__m33__ = 1_1) & (invariant_assume__m34__ = 1_1) & (invariant_assume__m35__ = 1_1) & (invariant_assume__m36__ = 1_1) & (invariant_assume__m37__ = 1_1) & (invariant_assume__m38__ = 1_1) & (invariant_assume__m39__ = 1_1) & (invariant_assume__m40__ = 1_1) & (issue_decode__m41__ = 1_1) & (issue_valid__m42__ = 1_1) & (post_value_holder__m43__ = 1_1) & (post_value_holder__m44__ = 1_1) & (post_value_holder__m45__ = 1_1) & (post_value_holder__m46__ = 1_1) & (post_value_holder__m47__ = 1_1)
+prove: True
+verification: safety
+strategy: ALL
+expected: True

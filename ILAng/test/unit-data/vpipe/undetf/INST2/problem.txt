@@ -1,0 +1,16 @@
+[GENERAL]
+model_files:wrapper.v[wrapper],rst.ets
+assume_if_true: True
+abstract_clock: True
+[DEFAULT]
+bmc_length: 6
+precondition: reset_done = 1_1
+
+[variable_map_assert]
+description:"variable_map_assert"
+properties:(variable_map_assert__p12__ = 1_1) & (variable_map_assert__p14__ = 1_1) & (variable_map_assert__p16__ = 1_1) & (variable_map_assert__p18__ = 1_1) & (variable_map_assert__p20__ = 1_1)
+assumptions:(noreset__m0__ = 1_1) & (variable_map_assume___m2__ = 1_1) & (variable_map_assume___m4__ = 1_1) & (variable_map_assume___m6__ = 1_1) & (variable_map_assume___m8__ = 1_1) & (variable_map_assume___m10__ = 1_1) & (issue_decode__m21__ = 1_1) & (issue_valid__m22__ = 1_1) & (funcmap__m23__ = 1_1) & (funcmap__m24__ = 1_1) & (funcmap__m25__ = 1_1) & (funcmap__m26__ = 1_1) & (func_result__m27__ = 1_1) & (func_arg__m28__ = 1_1) & (func_result__m29__ = 1_1) & (func_arg__m30__ = 1_1) & (func_result__m31__ = 1_1) & (func_arg__m32__ = 1_1) & (func_arg__m33__ = 1_1) & (func_result__m34__ = 1_1) & (func_arg__m35__ = 1_1) & (func_arg__m36__ = 1_1)
+prove: True
+verification: safety
+strategy: ALL
+expected: True
