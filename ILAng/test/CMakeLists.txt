@@ -86,11 +86,11 @@ package_add_test(${ILANG_TEST_MAIN}
   t_verilog_gen.cc
   t_verilog_mod.cc
   t_vtarget_gen.cc
-  t_inv_extract.cc
+  # t_inv_extract.cc
   t_z3adapter.cc
   t_z3sanity.cc
-  t_inv_syn.cc
-  t_inv_obj.cc
+  # t_inv_syn.cc
+  # t_inv_obj.cc
 )
 
 if(${ILANG_BUILD_SYNTH})
