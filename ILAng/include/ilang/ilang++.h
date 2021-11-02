@@ -640,6 +640,9 @@ void ImportChildSynthAbstraction(const std::string& file_name, Ila& parent,
 void ExportSysCSim(const Ila& ila, const std::string& dir_path,
                    bool optimize = false);
 
+void ExportCXXSim(const Ila& ila, const std::string& dir_path, 
+		   bool optimize = false);
+
 void ExportTandemSimChecker(const Ila& ila, const std::string& rtl_path, 
                       const std::string& rtl_top, 
                       const std::string& ref_map,

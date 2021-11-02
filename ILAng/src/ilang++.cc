@@ -761,6 +761,12 @@ void ImportChildSynthAbstraction(const std::string& file_name, Ila& parent,
 }
 #endif // SYNTH_INTERFACE
 
+void ExportCXXSim(const Ila& ila, const std::string& dir_path, bool opt) {
+  auto ilator = Ilator(ila.get());
+  ilator.DisableTandemChecker();
+  ilator.GenerateCXX(dir_path, opt);
+}
+
 void ExportSysCSim(const Ila& ila, const std::string& dir_path, bool opt) {
   auto ilator = Ilator(ila.get());
   ilator.Generate(dir_path, opt);

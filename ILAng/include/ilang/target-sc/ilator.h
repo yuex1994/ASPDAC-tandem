@@ -40,12 +40,24 @@ public:
     t_ = t; 
     return;
   }
+  void DisableTandemChecker() { 
+    tandem_check_en_ = false; 
+    t_ = nullptr; 
+    return;
+  }
   void EnableTandemConverter(TandemGenerator* t) { 
     tandem_check_en_ = true;
     tandem_convert_en_ = true; 
     t_ = t; 
     return;
   }
+  void DisableTandemConverter() { 
+    tandem_check_en_ = false;
+    tandem_convert_en_ = false; 
+    t_ = nullptr;
+    return;
+  }
+
   friend class TandemGenerator;  
 
 private:
