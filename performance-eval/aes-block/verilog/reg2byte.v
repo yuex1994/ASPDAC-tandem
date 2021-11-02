@@ -14,9 +14,9 @@ module reg2byte(clk, rst, en, wr, addr, data_in, data_out, reg_out);
     input           addr;
     input   [7:0]   data_in;
     output  [7:0]   data_out;
-    output  [15:0]  reg_out;
+    output  [15:0]  reg_out/*verilator public*/;
 
-    reg     [15:0]  reg_out;
+    reg     [15:0]  reg_out/*verilator public*/;
 
     wire wr0  = en && wr && addr == 0;
     wire wr1  = en && wr && addr == 1;

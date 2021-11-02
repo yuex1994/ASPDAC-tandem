@@ -83,7 +83,8 @@ int main(int argc, char **argv) {
     tc->next_cycle_av_check();
   }  
   auto t2 = std::chrono::high_resolution_clock::now();
-  // duration = std::chrono::duration_cast<std::chrono::microseconds>( t2 - t1 ).count();
+  // YUEX: uncomment the following two lines to measure the execution time
+  // auto duration = std::chrono::duration_cast<std::chrono::microseconds>( t2 - t1 ).count();
   // std::cout << "duration: " << duration << std::endl;
   return 0;
 }  

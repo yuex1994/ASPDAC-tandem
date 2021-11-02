@@ -31,10 +31,11 @@ module aes_top (
     //in_addr_range,
     xram_addr,      // AES ==> XRAM
     xram_data_out,  // AES ==> XRAM
-    xram_data_in,   // XRAM ==> AES
-    xram_ack,       // XRAM ==> AES
+    //xram_data_in,   // XRAM ==> AES
+    //xram_ack,       // XRAM ==> AES
     xram_stb,       // AES ==> XRAM
     xram_wr,
+    pc,
     
     aes_state,
     aes_addr,
@@ -44,6 +45,33 @@ module aes_top (
     aes_step
 );
 
+// XRAM logic
+reg [7:0] xram [0:65535]/*verilator public*/;
+reg [7:0] xram_data_in /*verilator public*/;
+reg xram_ack /*verilator public*/;
+always @(posedge clk) begin
+  if (xram_wr && xram_stb) begin
+    xram[xram_addr] <= xram_data_out;
+  end
+end
+
+//assign xram_data_in = xram[xram_addr];
+
+always @(posedge clk) begin
+  if ((!xram_wr) && xram_stb) begin
+    xram_data_in <= xram[xram_addr];
+  end
+end
+
+
+// assign xram_ack = xram_stb;
+
+always @(posedge clk) begin
+  if (xram_stb &  !xram_ack)
+    xram_ack <= 1;
+  else
+    xram_ack <= 0;
+end
 
 
 //
@@ -64,14 +92,15 @@ input [7:0] data_in;
 input [15:0] addr;
 output [7:0] data_out;
 output ack;
+output [31:0] pc;
 //output in_addr_range;
 // AES <=> XRAM
-output [15:0] xram_addr;
-output [7:0] xram_data_out;
-input [7:0] xram_data_in;
-input xram_ack;
-output xram_stb;
-output xram_wr;
+output [15:0] xram_addr /*verilator public*/;
+output [7:0] xram_data_out /*verilator public*/;
+// input [7:0] xram_data_in;
+// input xram_ack;
+output xram_stb /*verilator public*/;
+output xram_wr /*verilator public*/;
 // verif output.
 output [1:0] aes_state;
 output [15:0] aes_addr, aes_len;
@@ -113,7 +142,7 @@ wire sel_reg_key0   = {addr[15:4], 4'b0} == AES_REG_KEY0;
 
 
 // state register.
-reg [1:0]  aes_reg_state;
+reg [1:0]  aes_reg_state/*verilator public*/;
 wire [1:0] aes_state = aes_reg_state;
 
 wire [7:0] data_out = 
@@ -213,7 +242,7 @@ wire [15:0] block_counter_next = start_op    ? 0                    :
                                  block_counter;
 
 // keep track of the current byte being read/written.
-reg [3:0] byte_counter;
+reg [3:0] byte_counter /*verilator public*/;
 wire reset_byte_counter = start_op;
 wire incr_byte_counter = xram_ack;
 wire [3:0] byte_counter_next = reset_byte_counter ? 0                :
@@ -303,8 +332,8 @@ assign aes_time_enough = aes_time_counter >= 5'd10;
 
 // Actual encryption happens here.
 
-wire [127:0] aes_out;
-wire [127:0] encrypted_data;
+wire [127:0] aes_out /*verilator public*/;
+wire [127:0] encrypted_data /*verilator public*/;
 assign encrypted_data = aes_out ^ mem_data_buf;
 wire [127:0] aes_curr_key;
 assign aes_curr_key = aes_reg_key0;
@@ -361,14 +390,24 @@ end
 
 // ---------- monitors ---------------- //
 
-reg [7:0] data_out_reg;
+reg [7:0] data_out_reg /*verilator public*/;
 always @(posedge clk) begin
     data_out_reg <= data_out;
 end
 
-reg xram_ack_delay_1/*verilator public*/;
+reg xram_ack_delay_1 /*verilator public*/;
 always @(posedge clk) begin
     xram_ack_delay_1 <= xram_ack;
+end
+
+reg [31:0] pc /*verilator public*/;
+always @(posedge clk) begin
+  if (rst) begin
+    pc <= 0;
+  end
+  else if ((in_addr_range) && ((!wr) || (aes_reg_state == AES_STATE_IDLE))) begin
+    pc <= pc + 1;
+  end
 end
 
 

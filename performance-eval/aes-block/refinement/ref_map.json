@@ -1,0 +1,95 @@
+{
+	"VERILOG": "aes_top",
+	"verilator_include": [
+		"aes_top",
+		"aes_top_aes_top",
+		"aes_top_reg2byte",
+		"aes_top_reg16byte"
+	],
+	"verilog inputs": {
+		"wr": 1,
+		"stb": 1,
+		"addr": 16,
+		"data_in": 8
+	},
+	"verilog clock": "clk",
+	"verilog clock edge": true,
+	"start condition": {
+		"v_top.aes_top.aes_reg_state": 0
+	},
+  "state mapping": {
+    "aes_address": "v_top.aes_top.aes_reg_opaddr_i.reg_out",
+    "aes_length": "v_top.aes_top.aes_reg_oplen_i.reg_out",
+    "aes_key": "v_top.aes_top.aes_reg_key0_i.reg_out",
+    "aes_counter": "v_top.aes_top.aes_reg_ctr_i.reg_out",
+    "aes_status": "v_top.aes_top.aes_reg_state",
+    "XRAM": "v_top.aes_top.xram"
+  },
+  "interface mapping": {
+    "rst": "**RESET**",
+    "clk": "**CLOCK**",
+    "addr": "cmdaddr",
+    "data_in": "cmddata",
+    "wr": ["cmd", "1", "2", "0", "1"],
+    "xram_data_out": "**MEM**XRAM.wdata",
+    "xram_data_in": "**MEM**XRAM.rdata",
+    "xram_ack": "**KEEP**",
+    "xram_addr": "**KEEP**",
+    "xram_wr": "**KEEP**"
+  },
+  "instructions": [
+    {
+      "instruction": "WRITE_ADDRESS",
+      "start condition": "__decode__ ",      
+      "ready bound": 1
+    },
+    {
+      "instruction": "WRITE_LENGTH",
+      "start condition": "__decode__",      
+      "ready bound": 1
+    },
+    {
+      "instruction": "WRITE_KEY",
+      "start condition": "__decode__",      
+      "ready bound": 1
+    },
+    {
+      "instruction": "WRITE_COUNTER",
+      "start condition": "__decode__",      
+      "ready bound": 1
+    },
+    {
+      "instruction": "READ_LENGTH",
+      "start condition": "__decode__",      
+      "ready bound": 1
+    },
+    {
+      "instruction": "READ_ADDRESS",
+      "start condition": "__decode__",             
+      "ready bound": 1
+    },
+    {
+      "instruction": "READ_KEY",
+      "start condition": "__decode__",      
+      "ready bound": 1
+    },
+    {
+      "instruction": "READ_COUNTER",
+      "start condition": "__decode__",      
+      "ready bound": 1
+    },
+    {
+      "instruction": "GET_STATUS",
+      "start condition": "__decode__",      
+      "ready bound": 1
+    },
+    {
+      "instruction": "START_ENCRYPT",
+      "start condition": "__decode__",      
+      "finish condition": {"v_top.aes_top.aes_reg_state": 0}
+    }
+  ],
+  "functions": {
+    "aes128": "aes_128"
+  }
+}

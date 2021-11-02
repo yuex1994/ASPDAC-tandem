@@ -63,11 +63,11 @@ target_link_libraries(${AES_TARGET} PUBLIC ilang::ilang)
 # TARGET
 # executable
 # ---------------------------------------------------------------------------- #
-add_executable(${AES_TARGET}Exe
+add_executable(${AES_TARGET}TandemGenerator
   app/main.cc
 )
 
-target_include_directories(${AES_TARGET}Exe PRIVATE include)
+target_include_directories(${AES_TARGET}TandemGenerator PRIVATE include)
 
-target_link_libraries(${AES_TARGET}Exe ${AES_TARGET})
+target_link_libraries(${AES_TARGET}TandemGenerator ${AES_TARGET})
 
