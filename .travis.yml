@@ -36,6 +36,7 @@ jobs:
         - source $ILANG_BUILD_DIR/scripts/travis/clean-coverage.sh $ILANG_BUILD_DIR/build
       script:
         - source $ILANG_BUILD_DIR/scripts/travis/build.sh $ILANG_BUILD_DIR
+        - source $TRAVIS_BUILD_DIR/scripts/run_eval_perf.sh $EVAL_PERF_DIR 
       after_success:
         - source $ILANG_BUILD_DIR/scripts/travis/submit-coverage.sh $ILANG_BUILD_DIR/build
 
